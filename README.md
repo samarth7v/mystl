@@ -1,6 +1,6 @@
 <div align = "center">
 
 # tiny_stl
-## tiny stl recreation
+## My own version of C++ STL
 ![STL Under Construction](https://img.shields.io/badge/STL%20Under%20Construction-blue)
 </div>
