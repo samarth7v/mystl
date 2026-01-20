@@ -16,9 +16,8 @@ class Iterator{
             ++ptr;
             return temp;
         }
-        Iterator& operator+(size_t a){
-            ptr+a;
-            return *this;
+        Iterator operator+(size_t a){
+            return Iterator(ptr + a);
         }
         bool operator!=(const Iterator&other){
             return ptr!=other.ptr;
