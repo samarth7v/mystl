@@ -49,16 +49,7 @@ class vector{
             iota I(&data_[size_]);
             return I;
         }
-    
-    //push back
-        void push_back(const T& value)
-        {
-            if(size_+1>capacity_){
-                grow();
-            }
-            data_[size_] = value;
-            size_ ++;
-        }
+    //copy function
         void operator=(vector<T>& other)
         {
             capacity_ = other.capacity_;
@@ -68,6 +59,15 @@ class vector{
                 data_[i] = other.data_[i];
             }
 
+        }
+    //push back
+        void push_back(const T& value)
+        {
+            if(size_+1>capacity_){
+                grow();
+            }
+            data_[size_] = value;
+            size_ ++;
         }
         T back()
         {
