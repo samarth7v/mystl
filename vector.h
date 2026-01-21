@@ -16,7 +16,7 @@ class vector{
                 data_[i] = _value;
             }
         }
-        vector():capacity_(2), size_(0), data_(std::make_unique<T[]>(2)) {}
+        vector():capacity_(0), size_(0), data_(std::make_unique<T[]>(0)) {}
         vector(std::initializer_list<T> _list)
         {
             int size = std::distance(_list.begin(),_list.end());
@@ -43,7 +43,7 @@ class vector{
         void push_back(const T& value)
         {
             if(size_+1>capacity_){
-                nsize(2);
+                grow();
             }
             data_[size_] = value;
             size_ ++;
@@ -72,13 +72,13 @@ class vector{
         size_t size_;
         std::unique_ptr<T[]> data_;
 
-        void nsize(int n){
-            auto newdata = std::make_unique<T[]>(n*capacity_);
+        void grow(){
+            auto newdata = std::make_unique<T[]>(2*capacity_);
             for(int i=0; i<size_ ; i++){
                 newdata[i] = std::move(data_[i]);
             }
             data_ = std::move(newdata);
-            capacity_ = n*capacity_;
+            capacity_ = 2*capacity_;
         }
         T none;
 };
