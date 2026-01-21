@@ -22,4 +22,8 @@ int main(){
     for(auto it = t.begin(); it < t.end();it++){
         std::cout << *it << std::endl;
     }
+    vector<int> copyvec(t);
+    for(auto it = copyvec.begin(); it < copyvec.end();it++){
+        std::cout << *it << std::endl;
+    }
 }

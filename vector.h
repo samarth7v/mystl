@@ -27,6 +27,17 @@ class vector{
                 data_[i] = *(_list.begin()+i);
             }
         }
+    //copy constructor
+        vector(vector<T>& other)
+        {
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            data_ = std::make_unique<T[]>(capacity_);
+            for(int i=0;i<size_;i++){
+                data_[i] = other.data_[i];
+            }
+
+        }
         class iota:public Iterator<T>{
             using Iterator<T>::Iterator;
         };
