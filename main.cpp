@@ -26,4 +26,10 @@ int main(){
     for(auto it = copyvec.begin(); it < copyvec.end();it++){
         std::cout << *it << std::endl;
     }
+    vector<int> newvec;
+    newvec = t;
+    std::cout << "last" << std::endl;
+    for(auto it = newvec.begin(); it < newvec.end();it++){
+        std::cout << *it << std::endl;
+    }
 }

@@ -59,6 +59,16 @@ class vector{
             data_[size_] = value;
             size_ ++;
         }
+        void operator=(vector<T>& other)
+        {
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            data_ = std::make_unique<T[]>(capacity_);
+            for(int i=0;i<size_;i++){
+                data_[i] = other.data_[i];
+            }
+
+        }
         T back()
         {
             return data_[size_-1];
