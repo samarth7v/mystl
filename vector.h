@@ -131,7 +131,7 @@ class vector{
                 newdata[i] = std::move(data_[i]);
             }
             data_ = std::move(newdata);
-            capacity_ = 2*capacity_;
+            capacity_ = new_capacity;
         }
         T none;
 };
