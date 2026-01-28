@@ -48,13 +48,11 @@ class vector{
         class iota:public Iterator<T>{
             using Iterator<T>::Iterator;
         };
-        iota begin(){
-            iota I(&data_[0]);
-            return I;
+        iota begin() const{
+            return iota(data_.get());
         }
-        iota end(){
-            iota I(&data_[size_]);
-            return I;
+        iota end() const{
+            return iota(data_.get() + size_);
         }
     //copy assignment
         vector<T>& operator=(const vector<T>& other)
