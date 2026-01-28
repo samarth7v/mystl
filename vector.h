@@ -28,7 +28,7 @@ class vector{
             }
         }
     //copy constructor
-        vector(vector<T>& other)
+        vector(const vector<T>& other)
         {
             capacity_ = other.capacity_;
             size_ = other.size_;
@@ -50,7 +50,7 @@ class vector{
             return I;
         }
     //copy function
-        void operator=(vector<T>& other)
+        vector<T>& operator=(const vector<T>& other)
         {
             capacity_ = other.capacity_;
             size_ = other.size_;
@@ -58,9 +58,17 @@ class vector{
             for(int i=0;i<size_;i++){
                 data_[i] = other.data_[i];
             }
-
+            return this*;
         }
     //push back
+        T& front()
+        {
+            return data_[0];
+        }
+        T& back()
+        {
+            return data_[size_-1];
+        }
         void push_back(const T& value)
         {
             if(size_+1>capacity_){
@@ -69,24 +77,25 @@ class vector{
             data_[size_] = value;
             size_ ++;
         }
-        T front()
-        {
-            return data_[0];
-        }
-        T back()
-        {
-            return data_[size_-1];
-        }
         void pop_back()
         {
-            size_--;
-            data_[size_]=none;
+            if (size_>0)
+                --size_;
         }
         size_t size(){
             return size_;
         }
         T& operator[](size_t index){
-            if(index>=size_){
+            if(index>=size_)
+            {
+                std::cout<<"Index exceeded size of vector\n";
+                return none;
+            }
+            return data_[index];
+        }
+        const T& operator[](size_t index) const{
+            if(index>=size_)
+            {
                 std::cout<<"Index exceeded size of vector\n";
                 return none;
             }
@@ -97,8 +106,10 @@ class vector{
         size_t size_;
         std::unique_ptr<T[]> data_;
 
-        void grow(){
-            auto newdata = std::make_unique<T[]>(2*capacity_);
+        void grow()
+        {
+            size_t new_capacity = (capacity_==0)? 1 : (2 * capacity_);
+            auto newdata = std::make_unique<T[]>(new_capacity);
             for(int i=0; i<size_ ; i++){
                 newdata[i] = std::move(data_[i]);
             }
