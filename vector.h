@@ -105,6 +105,10 @@ class vector{
         T& operator[](size_t index){
             return data_[index];
         }
+        T& at(size_t index){
+            if(index >= size_) throw std::out_of_range("vector::at");
+            return data_[index];
+        }
         const T& operator[](size_t index) const{
             return data_[index];
         }
