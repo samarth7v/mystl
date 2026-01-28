@@ -68,7 +68,7 @@ class vector{
             return *this;
         }
     //move assignment
-        vector<T>& operator=(vector<T>& other) noexcept
+        vector<T>& operator=(vector<T>&& other) noexcept
         {
             capacity_ = other.capacity_;
             size_ = other.size_;
