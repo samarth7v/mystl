@@ -38,6 +38,13 @@ class vector{
             }
 
         }
+    //move constructor
+        vector(vector<T>&& other) noexcept : capacity_(other.capacity_),size_(other.size_),data_(std::move(other.data_))
+        {
+            other.capacity_=0;
+            other.size_=0;
+        }
+    //iterator
         class iota:public Iterator<T>{
             using Iterator<T>::Iterator;
         };
@@ -49,7 +56,7 @@ class vector{
             iota I(&data_[size_]);
             return I;
         }
-    //copy function
+    //copy assignment
         vector<T>& operator=(const vector<T>& other)
         {
             capacity_ = other.capacity_;
@@ -58,7 +65,17 @@ class vector{
             for(int i=0;i<size_;i++){
                 data_[i] = other.data_[i];
             }
-            return this*;
+            return *this;
+        }
+    //move assignment
+        vector<T>& operator=(vector<T>& other) noexcept
+        {
+            capacity_ = other.capacity_;
+            size_ = other.size_;
+            data_ = std::move(other.data_);
+            other.capacity_ = 0;
+            other.size_ = 0;
+            return *this;
         }
     //push back
         T& front()
